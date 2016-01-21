@@ -1,0 +1,52 @@
+<!doctype html>
+
+<html lang="en" ng-app="app">
+<head>
+  <meta charset="utf-8">
+
+  <title>A Project</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.0/angular.min.js"></script>
+  <script src="js7.js"></script>
+  <link rel ="stylesheet" href="normalize.css">
+  <link rel="stylesheet" href="main.css">
+
+</head>
+
+<body scroll ng-controller="trackingController" >
+
+    <div class="main" ng-init="console.log(1234)">
+      <nav class="nav-bar">
+        <ul class="buttons">
+        	<a ng-repeat="link in navTemplate" ng-href="link.link"><li ng-bind="link.name"></li></a>
+        </ul>
+      </nav>
+      
+      <div class="jumbotron">
+      	<img src="http://placehold.it/500x300" class="jumbotron-bg">
+        <h1 class="jumbotron-title">Art Monkeys</h1>
+          <h3 class="jumbotron-subtitle">Monkeys look at art</h3>
+      </div>
+
+      <div class="sign-up-link">
+        <a href="#">Sign Up For Our Spam List!</a>
+      </div>
+
+      <div class="main-page-content">
+        
+        <div class="paragraph-container" ng-repeat="paragraph in paragraphTemplate">
+          <h4 ng-bind="paragraph.header"></h4>
+          <img ng-src="{{paragraph.img}}">
+          <p ng-bind="paragraph.content"></p>
+        </div>
+      
+
+      </div>
+
+      <footer class="footer">
+        <a href="#">Here's our footer info or whatever click here</a>
+      </div>
+
+    </div>
+
+
+</body>

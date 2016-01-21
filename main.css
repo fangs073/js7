@@ -1,0 +1,86 @@
+body {
+  background: #7f8c8d;
+}
+a {
+  text-decoration: none;
+  color: #000;
+}
+.sign-up-link {
+  margin: 10px 0;
+  font-size: 150%;
+}
+.sign-up-link a {
+  color: #2980b9;
+}
+.main {
+  text-align: center;
+  background: #fff;
+  width: 500px;
+  margin: auto;
+  border-right: 20px solid #95a5a6;
+  border-left: 20px solid #95a5a6;
+  padding: 5px 10px;
+}
+.buttons {
+  list-style-type: none;
+  padding: 0;
+}
+.buttons a {
+  background: #9b59b6;
+  width: 100%;
+  display: inline-block;
+}
+.nav-bar .buttons {
+  width: 100%;
+  margin: auto;
+  text-align: center;
+}
+.nav-bar .buttons a {
+  width: 20%;
+  background: #9b59b6;
+  border: 1px solid #fff;
+  padding: 5px;
+  color: #95a5a6;
+}
+.nav-bar {
+  width: 98%;
+  margin: auto;
+  padding: 5px;
+  background-color: #1abc9c;
+}
+.jumbotron {
+  position: relative;
+  margin: auto;
+  width: 500px;
+  padding-top: 10px;
+}
+.jumbotron-bg {
+  position: relative;
+}
+.jumbotron-title,
+.jumbotron-subtitle {
+  position: absolute;
+}
+.jumbotron-title {
+  top: 0;
+  left: 5px;
+}
+.jumbotron-subtitle {
+  bottom: 0;
+  right: 5px;
+}
+.main-page-content {
+  padding-top: 10px;
+}
+.paragraph-content {
+  display: inline-block;
+}
+.footer {
+  display: block;
+  background-color: #34495e;
+  margin: 5px;
+  padding: 10px;
+}
+.footer a {
+  color: #fff;
+}
