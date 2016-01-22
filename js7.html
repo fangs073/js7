@@ -14,37 +14,42 @@
 
 <body scroll ng-controller="trackingController" >
 
-    <div class="main" ng-init="console.log(1234)">
-      <nav class="nav-bar">
+    <div class="analytics-button" ng-click="analytics.log = !analytics.log; analytics.show = !analytics.show">Analytics</div>
+    <div class="analytics-display" ng-if="analytics.show">
+
+    </div>
+
+    <div class="main" ng-if="!analytics.show">
+      <nav class="nav-bar" ng-click='logClick(0)'>
         <ul class="buttons">
-        	<a ng-repeat="link in navTemplate" ng-href="link.link"><li ng-bind="link.name"></li></a>
+        	<a ng-repeat="link in navTemplate" ng-href="{{link.link}}"><li ng-bind="link.name"></li></a>
         </ul>
       </nav>
       
-      <div class="jumbotron">
+      <div class="jumbotron" ng-click='logClick(1)'>
       	<img src="http://placehold.it/500x300" class="jumbotron-bg">
         <h1 class="jumbotron-title">Art Monkeys</h1>
           <h3 class="jumbotron-subtitle">Monkeys look at art</h3>
       </div>
 
-      <div class="sign-up-link">
-        <a href="#">Sign Up For Our Spam List!</a>
+      <div class="sign-up-link" ng-click="logClick(2)">
+        <a href="#" ng-click="signUpClick()">Sign Up For Our Spam List!</a>
       </div>
 
       <div class="main-page-content">
         
         <div class="paragraph-container" ng-repeat="paragraph in paragraphTemplate">
-          <h4 ng-bind="paragraph.header"></h4>
-          <img ng-src="{{paragraph.img}}">
-          <p ng-bind="paragraph.content"></p>
+          <h4 ng-bind="paragraph.header" ng-click="logClick(paragraph.paraNum*3 + 3)"></h4>
+          <img ng-src="{{paragraph.img}}" ng-click="logClick(paragraph.paraNum*3 + 4)">
+          <p ng-bind="paragraph.content" ng-click="logClick(paragraph.paraNum*3 + 5)"></p>
         </div>
       
 
       </div>
 
-      <footer class="footer">
+      <footer class="footer" ng-click="logClick(12)">
         <a href="#">Here's our footer info or whatever click here</a>
-      </div>
+      </footer>
 
     </div>
 

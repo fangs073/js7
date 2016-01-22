@@ -84,3 +84,25 @@ a {
 .footer a {
   color: #fff;
 }
+.analytics-button {
+  position: fixed;
+  display: inline-block;
+  height: 50px;
+  width: 100px;
+  background-color: #e74c3c;
+  top: 50px;
+  left: 50px;
+  color: #fff;
+  border-radius: 10px;
+  text-align: center;
+  line-height: 50px;
+  vertical-align: middle;
+  z-index: 100;
+}
+.analytics-display {
+  position: fixed;
+  display: inline-block;
+  width: 100vw;
+  height: 100vh;
+  background-color: #16a085;
+}

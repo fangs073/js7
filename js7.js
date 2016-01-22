@@ -3,9 +3,10 @@ var app = angular.module('app', []);
 
 		//console.log($window.innerHeight)
 
-		$scope.logVal = function() {
-			console.log(11111);
-		}
+		$scope.analytics = {
+			log : true,
+			show : false
+		};
 
 		$scope.navTemplate = [
 			{
@@ -30,17 +31,20 @@ var app = angular.module('app', []);
 			{
 				header: 'Hipsters',
 				img:  'http://placehold.it/300x150',
-				content: "Beard bespoke meggings tote bag, you probably haven't heard of them jean shorts church-key butcher biodiesel dreamcatcher banjo migas. VHS disrupt taxidermy, cronut flannel tote bag messenger bag chicharrones. Green juice pitchfork williamsburg synth, locavore fixie dreamcatcher skateboard actually biodiesel irony. Bicycle rights scenester kickstarter actually crucifix, freegan locavore health goth cliche etsy. Pour-over cardigan literally letterpress twee stumptown. Listicle sriracha pinterest roof party skateboard, trust fund mixtape migas helvetica brunch hoodie VHS. Etsy quinoa lumbersexual, migas chambray seitan neutra man bun."
+				content: "Beard bespoke meggings tote bag, you probably haven't heard of them jean shorts church-key butcher biodiesel dreamcatcher banjo migas. VHS disrupt taxidermy, cronut flannel tote bag messenger bag chicharrones. Green juice pitchfork williamsburg synth, locavore fixie dreamcatcher skateboard actually biodiesel irony. Bicycle rights scenester kickstarter actually crucifix, freegan locavore health goth cliche etsy. Pour-over cardigan literally letterpress twee stumptown. Listicle sriracha pinterest roof party skateboard, trust fund mixtape migas helvetica brunch hoodie VHS. Etsy quinoa lumbersexual, migas chambray seitan neutra man bun.",
+				paraNum: 0
 			},
 			{
 				header: 'Pirates',
 				img:  'http://placehold.it/300x150',
-				content: "Prow scuttle parrel provost Sail ho shrouds spirits boom mizzenmast yardarm. Pinnace holystone mizzenmast quarter crow's nest nipperkin grog yardarm hempen halter furl. Swab barque interloper chantey doubloon starboard grog black jack gangway rutters."
+				content: "Prow scuttle parrel provost Sail ho shrouds spirits boom mizzenmast yardarm. Pinnace holystone mizzenmast quarter crow's nest nipperkin grog yardarm hempen halter furl. Swab barque interloper chantey doubloon starboard grog black jack gangway rutters.",
+				paraNum: 1
 			},
 			{
 				header: 'Bacon',
 				img:  'http://placehold.it/300x150',
-				content: 'Venison salami jerky turkey turducken cupim sirloin pork belly beef porchetta tongue landjaeger. Picanha pork loin ball tip kevin turducken capicola. Kevin pork belly tongue, strip steak jowl biltong alcatra short loin ham sausage turkey. Pork belly biltong meatball bresaola shankle ball tip, pig shank flank beef ribs spare ribs. Strip steak tri-tip kielbasa leberkas salami chicken andouille sirloin short ribs chuck.'
+				content: 'Venison salami jerky turkey turducken cupim sirloin pork belly beef porchetta tongue landjaeger. Picanha pork loin ball tip kevin turducken capicola. Kevin pork belly tongue, strip steak jowl biltong alcatra short loin ham sausage turkey. Pork belly biltong meatball bresaola shankle ball tip, pig shank flank beef ribs spare ribs. Strip steak tri-tip kielbasa leberkas salami chicken andouille sirloin short ribs chuck.',
+				paraNum: 2
 			},
 		]
 
@@ -127,31 +131,50 @@ var app = angular.module('app', []);
 					name: 'section-3-text',
 					bottom: 1465,
 					viewed: false
+				},
+				{
+					name: 'footer',
+					bottom: 1523,
+					viewed: false
 				}
 			]
 		}
 
+		$scope.signUpClick = function() {
+			$scope.tracking.timeTracking.timeUntilClick = $scope.tracking.timeTracking.timeOnPage;
+		}
+
+		$scope.logClick = function(id) {
+			$scope.tracking.elementTracking[id].clicks++;
+			console.log($scope.tracking.elementTracking[id].clicks);
+		}
+
 		$scope.tracking.elementTracking.forEach(function(val,i,arr) {
 			arr[i].viewTime = 0;
+			arr[i].clicks = 0;
 		})
 
 		var second;
-		second = $interval(function() {
-				$scope.tracking.timeTracking.timeOnPage++;
-				$scope.tracking.elementTracking.forEach(function(val,i,arr) {
-					if ( arr[i].bottom > $window.pageYOffset && arr[i].bottom < $window.pageYOffset + $window.innerHeight) {
-						arr[i].viewTime++;
-					}
-				})	
-		},
-		1000);
+
+			$interval(function() {
+				if ($scope.analytics.log === true) {
+						$scope.tracking.timeTracking.timeOnPage++;
+						$scope.tracking.elementTracking.forEach(function(val,i,arr) {
+							if ( arr[i].bottom > $window.pageYOffset && arr[i].bottom < $window.pageYOffset + $window.innerHeight) {
+								arr[i].viewTime++;
+							}
+						})
+				}	
+			},
+			1000);
+			
 
 		$scope.checkViewed = function() {
 			$scope.tracking.elementTracking.forEach(function(val,i,arr){
             	//console.log(arr[i].name + " : " + (arr[i].bottom <= $scope.tracking.scrollTracking.maxScroll))
             	if (arr[i].bottom <= $scope.tracking.scrollTracking.maxScroll) {
             		if (arr[i].viewed == false) {
-            			console.log(arr[i].name)
+            			//console.log(arr[i].name)
             		}
             		arr[i].viewed = true;
             	}
